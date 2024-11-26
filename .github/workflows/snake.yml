@@ -16,12 +16,14 @@ jobs:
         with:
           github_user_name: BeCrista # Substitua pelo seu username
           outputs: dist/snake.svg
-      - name: Push Snake animation to the output branch
+      - name: Set up Git for GitHub Actions
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Push Snake animation to the output branch
+        run: |
           git add dist/snake.svg
           git commit -m "Generated Snake Animation" || echo "No changes to commit"
           git push origin output
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Adiciona o token aqui
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
